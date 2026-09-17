@@ -54,6 +54,16 @@ installation progress.
 docker logs -f moodle-app
 ```
 
+## Prebuilt image
+
+Every push to `main` builds the image and publishes it to the GitHub Container
+Registry. Git tags like `v1.2.3` additionally publish the tags `1.2.3` and `1.2`.
+
+```bash
+docker pull ghcr.io/theautomatist/moodle-all-in-one:latest
+docker run -d --name moodle-app -p 9090:9090 ghcr.io/theautomatist/moodle-all-in-one:latest
+```
+
 ## Configuration
 
 The Compose file reads variables from `.env`. If the file is not
