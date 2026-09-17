@@ -66,7 +66,8 @@ VOLUME /var/lib/mysql
 # Configure moodle
 ENV MOODLE_HOST=localhost
 ENV MOODLE_PORT=9090
-RUN wget "https://download.moodle.org/download.php/direct/stable403/moodle-latest-403.tgz" -O /tmp/moodle.tgz
+# download.moodle.org only redirects here and answers CI runners with 403
+RUN curl -fSL --retry 3 "https://packaging.moodle.org/stable403/moodle-latest-403.tgz" -o /tmp/moodle.tgz
 RUN chown nobody.nobody /tmp/moodle.tgz
 RUN mkdir /var/www/moodledata
 RUN chown -R nobody.nobody /var/www/moodledata
